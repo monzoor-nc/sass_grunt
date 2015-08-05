@@ -133,7 +133,7 @@ grunt.initConfig({
 
 		grunt deploy
 	*/
-	grunt.registerTask('test', ['express','watch']);
+	grunt.registerTask('server', ['express','watch']);
 	grunt.registerTask('dev', ['sass_globbing','sass']);
 
 	grunt.registerTask('deploy', ['sass_globbing','sass', 'concat', 'uglify', 'cssmin', 'clean']);
