@@ -32,13 +32,10 @@ grunt.initConfig({
 
 		watch: {
 			options: {
-				livereload: 8000,
+				livereload: true,
 			},
 			html: {
-				files: ['*.html'],
-				options: {
-			    	livereload: true
-			    }
+				files: ['*.html']
 			},
 			js: {
 				files: ['js/**/*.js']
@@ -96,6 +93,16 @@ grunt.initConfig({
 		        		'build/css/concat.css'
 		        	]
 		    }
+		},
+		express: {
+			all: {
+				options: {
+					port: 8000,
+					hostname: 'localhost',
+					bases: ['.'],
+					livereload: true
+				}
+			}
 		}
 
 	});
@@ -114,7 +121,7 @@ grunt.initConfig({
 	// Clean concated files from build
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
-	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-express');
 
 
 
@@ -126,6 +133,7 @@ grunt.initConfig({
 
 		grunt deploy
 	*/
+	grunt.registerTask('test', ['express','watch']);
 	grunt.registerTask('dev', ['sass_globbing','sass']);
 
 	grunt.registerTask('deploy', ['sass_globbing','sass', 'concat', 'uglify', 'cssmin', 'clean']);
