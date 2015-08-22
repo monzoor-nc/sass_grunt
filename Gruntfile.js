@@ -30,6 +30,17 @@ grunt.initConfig({
 			}
 		},
 
+		autoprefixer:{
+			options: {
+			  	browsers: ['last 2 versions', 'ie 8', 'ie 9']
+			},
+	      	dist:{
+	        	files:{
+	          	'style/style.css':'style/style.css'
+	        	}
+	      	}
+	    },
+
 		watch: {
 			options: {
 				livereload: true,
@@ -42,7 +53,7 @@ grunt.initConfig({
 			},
 			sass: {
 			    files: '**/*.scss',
-			    tasks: ['sass_globbing','sass']
+			    tasks: ['sass_globbing','sass','autoprefixer']
 			  }
 		},
 		
@@ -134,7 +145,7 @@ grunt.initConfig({
 		grunt deploy
 	*/
 	grunt.registerTask('server', ['express','watch']);
-	grunt.registerTask('dev', ['sass_globbing','sass']);
+	grunt.registerTask('dev', ['sass_globbing','sass','autoprefixer']);
 
-	grunt.registerTask('deploy', ['sass_globbing','sass', 'concat', 'uglify', 'cssmin', 'clean']);
+	grunt.registerTask('deploy', ['sass_globbing','sass', 'autoprefixer', 'concat', 'uglify', 'cssmin', 'clean']);
 }
